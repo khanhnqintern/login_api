@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthControler;
 use App\Http\Controllers\Payment\PaymentController;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,12 @@ Route::POST('payment', [PaymentController::class, 'payment']);
 Route::post('register', [AuthControler::class, 'register']);
 Route::post('login', [AuthControler::class, 'login']);
 Route::post('logout', [AuthControler::class, 'logout']);
+Route::get('get', [AuthControler::class, 'getUser']);
+Route::post('update', [AuthControler::class, 'update']);
+Route::post('/delete/{id}', [AuthControler::class, 'delete']);
+
+Route::group(['prefix' => 'user'], function () {
+    Route::post('create', [UserController::class, 'store']);
+    Route::put('update/{id}', [UserController::class, 'update']);
+    Route::delete('delete/{id}', [UserController::class, 'delete']);
+});
