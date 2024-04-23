@@ -30,8 +30,9 @@ Route::get('get', [AuthControler::class, 'getUser']);
 Route::post('update', [AuthControler::class, 'update']);
 Route::post('/delete/{id}', [AuthControler::class, 'delete']);
 
-Route::group(['prefix' => 'user'], function () {
-    Route::post('create', [UserController::class, 'store']);
-    Route::put('update/{id}', [UserController::class, 'update']);
-    Route::delete('delete/{id}', [UserController::class, 'delete']);
-});
+
+// Route::post('test', [UserController::class, 'test']);
+Route::post('create', [UserController::class, 'store']);
+Route::get('index', [UserController::class, 'index']);
+Route::put('update/{id}', [UserController::class, 'update']);
+Route::delete('delete/{id}', [UserController::class, 'delete']);

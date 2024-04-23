@@ -8,16 +8,6 @@ use Illuminate\Foundation\Http\FormRequest;
 class CreateRequest extends BaseRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return false;
-    }
-
-    /**
      * Get the validation rules that apply to the request.
      *
      * @return array<string, mixed>
@@ -25,23 +15,9 @@ class CreateRequest extends BaseRequest
     public function rules()
     {
         return [
-            'email' => [
-                'required',
-                'email',
-                'unique:users,email',
-            ],
-            'password' => [
-                'required',
-                'min:8',
-                'max:20',
-                // 'regex:/\s\s+/',
-                'confirmed',
-            ],
-            'name' => [
-                'required',
-                'string',
-                'between:6,255'
-            ]
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:6',
         ];
     }
 }

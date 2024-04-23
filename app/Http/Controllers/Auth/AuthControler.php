@@ -18,6 +18,11 @@ use Illuminate\Http\Request;
 
 class AuthControler extends Controller
 {
+    public function test(Request $request)
+    {
+        dd($request);
+    }
+
     public function register(RegisterRequest $request)
     {
         $result = resolve(RegisterUserService::class)->setParams($request->validated())->handle();
