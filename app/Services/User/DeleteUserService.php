@@ -19,7 +19,7 @@ class DeleteUserService extends BaseService
     public function handle()
     {
         try {
-            $this->userRepository->delete($this->data);
+            $this->userRepository->delete($this->data->id);
             return true;
         } catch (Exception $e) {
             Log::info($e);

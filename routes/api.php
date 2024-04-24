@@ -27,8 +27,6 @@ Route::post('register', [AuthControler::class, 'register']);
 Route::post('login', [AuthControler::class, 'login']);
 Route::post('logout', [AuthControler::class, 'logout']);
 
-
-// Route::post('test', [UserController::class, 'test']);
 Route::group(['prefix' => 'users'], function () {
     Route::post('create', [UserController::class, 'store']);
     Route::get('index', [UserController::class, 'index']);

@@ -24,14 +24,13 @@ class UserController extends Controller
      */
     public function store(CreateRequest $request)
     {
-        //dd($request);
         $user = resolve(CreateUserService::class)->setParams($request->validated())->handle();
         if (!$user) {
-            return $this->responseErrors('Không thể tạo người dùng');
+            return $this->responseErrors(__('users_vi.create_fail'));
         }
 
         return $this->responseSuccess([
-            'message' => 'Thêm người dùng thành công',
+            'message' => __('users_vi.create_success'),
             'user' => $user,
         ]);
     }
@@ -41,12 +40,13 @@ class UserController extends Controller
         $users = resolve(DeleteUserService::class)->setParams($request)->handle();
 
         if (!$users) {
-            return response()->json(['error' => 'Không tìm thấy người dùng']);
+            return $this->responseErrors(__('users_vi.delete_fail'));
+
         }
 
         return response()->json([
             'user' => $users,
-            'message' => 'Xóa người dùng thành công'
+            'message' => __('users_vi.delete_success')
         ]);
 
     }
@@ -61,30 +61,29 @@ class UserController extends Controller
     {
         $users = resolve(GetUserService::class)->handle();
         if (!$users) {
-            return $this->responseErrors('Lỗi hiển thị người dùng');
+            return $this->responseErrors(__('users_vi.get_fail'));
         }
 
         return $this->responseSuccess([
             'users' => $users,
-            'message' => 'danh sách người dùng',
+            'message' => __('users_vi.get_success'),
         ]);
     }
 
     public function update(UpdateUserRequest $request, $id)
     {
-        //dd($request->validated());
-        // $update = $request->validated();
-        // $update['id'] = $id;
+        $update = $request->validated();
+        $update['id'] = $id;
 
         $users = resolve(UpdateUserService::class)->setParams($update)->handle();
 
         if (!$users) {
-            return response()->json(['error' => 'Không tìm thấy người dùng']);
+            return $this->responseErrors(__('users_vi.update_fail'));
         }
 
         return response()->json([
             'user' => $users,
-            'message' => 'Cập nhật người dùng thành công'
+            'message' => __('users_vi.update_success')
         ]);
     }
 }
