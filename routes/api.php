@@ -26,13 +26,12 @@ Route::POST('payment', [PaymentController::class, 'payment']);
 Route::post('register', [AuthControler::class, 'register']);
 Route::post('login', [AuthControler::class, 'login']);
 Route::post('logout', [AuthControler::class, 'logout']);
-Route::get('get', [AuthControler::class, 'getUser']);
-Route::post('update', [AuthControler::class, 'update']);
-Route::post('/delete/{id}', [AuthControler::class, 'delete']);
 
 
 // Route::post('test', [UserController::class, 'test']);
-Route::post('create', [UserController::class, 'store']);
-Route::get('index', [UserController::class, 'index']);
-Route::put('update/{id}', [UserController::class, 'update']);
-Route::delete('delete/{id}', [UserController::class, 'delete']);
+Route::group(['prefix' => 'users'], function () {
+    Route::post('create', [UserController::class, 'store']);
+    Route::get('index', [UserController::class, 'index']);
+    Route::put('update/{id}', [UserController::class, 'update']);
+    Route::delete('delete/{id}', [UserController::class, 'delete']);
+});

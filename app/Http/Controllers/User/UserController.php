@@ -73,8 +73,8 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, $id)
     {
         //dd($request->validated());
-        $update = $request->validated();
-        $update['id'] = $id;
+        // $update = $request->validated();
+        // $update['id'] = $id;
 
         $users = resolve(UpdateUserService::class)->setParams($update)->handle();
 

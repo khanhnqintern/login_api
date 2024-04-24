@@ -20,8 +20,8 @@ class UpdateUserService extends BaseService
     {
         try {
             //dump('Update UserService');
-            $this->userRepository->update($this->data, $this->data['id']);
-            return true;
+            return $this->userRepository->update($this->data, $this->data['id']);
+
         } catch (Exception $e) {
             Log::error($e);
 

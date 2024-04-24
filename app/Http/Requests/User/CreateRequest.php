@@ -15,9 +15,21 @@ class CreateRequest extends BaseRequest
     public function rules()
     {
         return [
-            'name' => 'required|string',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:6',
+            'name'          => 'required|string',
+            'email'         => 'required|email|unique:users,email',
+            'password'      => 'required|string|min:6',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required'         => "Name không được bỏ trống!",
+            'name.string'           => "Name không đúng định dạng!",
+            'email.required'        => "Email không được để trống!",
+            'email.email'           => "Email không đúng định dạng!",
+            'email.unique'          => "Email đã tồn tại!",
+            'password.min'          => "Mật khẩu phải từ 6 ký tự trở lên!",
         ];
     }
 }

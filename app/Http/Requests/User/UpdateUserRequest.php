@@ -15,9 +15,22 @@ class UpdateUserRequest extends BaseRequest
     public function rules()
     {
         return [
-            'name' => 'sometimes|string',
-            'email' => 'sometimes|email|unique:users,email',
-            'password' => 'sometimes|string|min:6',
+            'id'                => 'exists:admins,id',
+            'name'              => 'sometimes|string',
+            'email'             => 'sometimes|email|unique:users,email',
+            'password'          => 'sometimes|string|min:6',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'id.*'                  => 'Users không tồn tại!',
+            'name.required'         => "Name không được bỏ trống!",
+            'name.string'           => "Name không đúng định dạng!",
+            'email.email'           => "Email không đúng định dạng!",
+            'email.unique'          => "Email đã tồn tại!",
+            'password.min'          => "Mật khẩu phải từ 6 ký tự trở lên!",
         ];
     }
 }
