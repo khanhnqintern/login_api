@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Services\User\CreateUserService;
 use App\Services\User\DeleteUserService;
 use App\Services\User\GetUserService;
+use App\Services\User\ShowIdUserService;
 use App\Services\User\UpdateUserService;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,11 +27,11 @@ class UserController extends Controller
     {
         $user = resolve(CreateUserService::class)->setParams($request->validated())->handle();
         if (!$user) {
-            return $this->responseErrors(__('users_vi.create_fail'));
+            return $this->responseErrors(__('users.create_fail'));
         }
 
         return $this->responseSuccess([
-            'message' => __('users_vi.create_success'),
+            'message' => __('users.create_success'),
             'user' => $user,
         ]);
     }
@@ -40,13 +41,13 @@ class UserController extends Controller
         $users = resolve(DeleteUserService::class)->setParams($request)->handle();
 
         if (!$users) {
-            return $this->responseErrors(__('users_vi.delete_fail'));
+            return $this->responseErrors(__('users.delete_fail'));
 
         }
 
         return response()->json([
+            'message' => __('users.delete_success'),
             'user' => $users,
-            'message' => __('users_vi.delete_success')
         ]);
 
     }
@@ -61,12 +62,25 @@ class UserController extends Controller
     {
         $users = resolve(GetUserService::class)->handle();
         if (!$users) {
-            return $this->responseErrors(__('users_vi.get_fail'));
+            return $this->responseErrors(__('users.get_fail'));
         }
 
         return $this->responseSuccess([
+            'message' => __('users.get_success'),
             'users' => $users,
-            'message' => __('users_vi.get_success'),
+        ]);
+    }
+
+    public function showUser($id)
+    {
+        $users = resolve(ShowIdUserService::class)->setParams($id)->handle();
+        if (!$users) {
+            return $this->responseErrors(__('users.showUser_fail'));
+        }
+
+        return $this->responseSuccess([
+            'message' => __('users.showUser_success'),
+            'users' => $users,
         ]);
     }
 
@@ -78,12 +92,12 @@ class UserController extends Controller
         $users = resolve(UpdateUserService::class)->setParams($update)->handle();
 
         if (!$users) {
-            return $this->responseErrors(__('users_vi.update_fail'));
+            return $this->responseErrors(__('users.update_fail'));
         }
 
         return response()->json([
+            'message' => __('users.update_success'),
             'user' => $users,
-            'message' => __('users_vi.update_success')
         ]);
     }
 }

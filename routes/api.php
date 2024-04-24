@@ -23,13 +23,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::POST('payment', [PaymentController::class, 'payment']);
 
-Route::post('register', [AuthControler::class, 'register']);
-Route::post('login', [AuthControler::class, 'login']);
-Route::post('logout', [AuthControler::class, 'logout']);
+Route::group(['prefix' => 'auth'], function () {
+    Route::post('register', [AuthControler::class, 'register']);
+    Route::post('login', [AuthControler::class, 'login']);
+    Route::post('logout', [AuthControler::class, 'logout']);
+});
 
 Route::group(['prefix' => 'users'], function () {
     Route::post('create', [UserController::class, 'store']);
     Route::get('index', [UserController::class, 'index']);
+    Route::get('show-user/{id}', [UserController::class, 'showUser']);
     Route::put('update/{id}', [UserController::class, 'update']);
     Route::delete('delete/{id}', [UserController::class, 'delete']);
 });

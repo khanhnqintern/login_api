@@ -17,14 +17,24 @@ class LoginRequest extends BaseRequest
             'email' => [
                 'required',
                 'email',
-                'exists:users,email',
             ],
             'password' => [
                 'required',
                 'min:8',
                 'max:20',
-                // 'regex:/\s\s+/',
+                'regex:/^\S*$/',
             ],
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'email.required'        => "Email không được để trống!",
+            'email.email'           => "Email không đúng định dạng!",
+            'password.required'     => "Mật khẩu không được bỏ trống!",
+            'password.min'          => "Mật khẩu phải từ 8 ký tự trở lên!",
+            'password.max'          => "Mật khẩu phải từ 20 ký tự trở xuống!",
+            'password.regex'        => "Mật khẩu không chứa khoảng trắng!",
         ];
     }
 }

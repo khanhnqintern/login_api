@@ -9,5 +9,6 @@ return [
     'update_fail'           => 'Không tìm thấy người dùng !',
     'delete_success'        => 'Xóa người dùng thành công.',
     'delete_fail'           => 'Không tìm thấy người dùng !',
-
+    'showUser_success'      => 'Thông tin người dùng.',
+    'showUser_fail'         => 'Không tìm thấy thông tin người dùng',
 ];

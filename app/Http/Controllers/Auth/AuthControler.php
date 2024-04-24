@@ -19,12 +19,12 @@ class AuthControler extends Controller
         $result = resolve(RegisterUserService::class)->setParams($request->validated())->handle();
 
         if (!$result) {
-            return $this->responseErrors('Không thể đăng ký người dùng');
+            return $this->responseErrors(__('auth.register_fail'));
         }
 
         return $this->responseSuccess([
+            'message' => __('auth.register_success'),
             'user' => $result,
-            'message' => 'Đăng ký thành công',
         ]);
     }
 
@@ -32,10 +32,11 @@ class AuthControler extends Controller
     {
         $credentials = $request->validated();
         if (!$token = Auth::attempt($credentials)) {
-            return $this->responseErrors('Không được phép', Response::HTTP_UNAUTHORIZED);
+            return $this->responseErrors(__('auth.login_fail'));
         }
 
         return $this->responseSuccess([
+            'message' => __('auth.login_success'),
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60,
@@ -47,11 +48,11 @@ class AuthControler extends Controller
         try {
             auth()->logout();
 
-            return response()->json(['message' => 'Người dùng đã đăng xuất thành công']);
+            return response()->json(__('auth.logout_success'));
         } catch (Exception $e) {
             Log::error("đăng xuất thất bại", ['result' => $e->getMessage()]);
 
-            return $this->responseErrors('Không thể đăng ký người dùng');
+            return $this->responseErrors(__('auth.logout_fail'));
         }
     }
 
