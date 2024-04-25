@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthControler;
 use App\Http\Controllers\Payment\PaymentController;
+use App\Http\Controllers\RoleUserController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -17,9 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
 
 Route::POST('payment', [PaymentController::class, 'payment']);
 
@@ -29,10 +28,25 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('logout', [AuthControler::class, 'logout']);
 });
 
+
 Route::group(['prefix' => 'users'], function () {
     Route::post('create', [UserController::class, 'store']);
     Route::get('index', [UserController::class, 'index']);
     Route::get('show-user/{id}', [UserController::class, 'showUser']);
-    Route::put('update/{id}', [UserController::class, 'update']);
     Route::delete('delete/{id}', [UserController::class, 'delete']);
+
+    // Route chỉ dành cho admin
+    Route::middleware('role:admin')->group(function () {
+        Route::put('update/{id}', [UserController::class, 'update']);
+    });
+
+    // Route chỉ dành cho store
+    Route::middleware('role:store')->group(function () {
+        Route::put('update/{id}', [UserController::class, 'update']);
+    });
+
+    // Route chỉ dành cho staff
+    Route::middleware('role:staff')->group(function () {
+        Route::put('update/{id}', [UserController::class, 'update']);
+    });
 });

@@ -11,4 +11,5 @@ return [
     'delete_fail'           => 'Không tìm thấy người dùng !',
     'showUser_success'      => 'Thông tin người dùng.',
     'showUser_fail'         => 'Không tìm thấy thông tin người dùng',
+    'permission_denied'     => 'Bạn không có quyền chỉnh sửa thông tin',
 ];
