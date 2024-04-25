@@ -33,6 +33,23 @@ Route::group(['prefix' => 'users'], function () {
     Route::post('create', [UserController::class, 'store']);
     Route::get('index', [UserController::class, 'index']);
     Route::get('show-user/{id}', [UserController::class, 'showUser']);
-    Route::put('update/{id}', [UserController::class, 'update']);
     Route::delete('delete/{id}', [UserController::class, 'delete']);
+    Route::get('check-login', [UserController::class, 'checkLogin'])->name('checklLogin');
+    Route::get('check-quyen', [UserController::class, 'checkQuyen'])->name('checkQuyen');
+
+
+    // Route chỉ dành cho admin
+    Route::middleware('role:admin')->group(function () {
+        Route::put('update/{id}', [UserController::class, 'update']);
+    });
+
+    // Route chỉ dành cho store
+    Route::middleware('role:store')->group(function () {
+        Route::put('update/{id}', [UserController::class, 'update']);
+    });
+
+    // Route chỉ dành cho staff
+    Route::middleware('role:staff')->group(function () {
+        Route::put('update/{id}', [UserController::class, 'update']);
+    });
 });

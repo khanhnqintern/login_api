@@ -100,4 +100,14 @@ class UserController extends Controller
             'user' => $users,
         ]);
     }
+
+    public function checkLogin()
+    {
+        return $this->responseErrors(__('users.check_login_fail'));
+    }
+
+    public function checkQuyen()
+    {
+        return $this->responseErrors(__('users.check_quyen_fail'));
+    }
 }
