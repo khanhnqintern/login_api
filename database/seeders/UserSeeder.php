@@ -26,35 +26,35 @@ class UserSeeder extends Seeder
                 'name'          => 'Nguyễn Quốc Việt',
                 'email'         => 'nguyenquocviet@gmail.com',
                 'password'      => bcrypt('abc123456'),
-                'role'          => 'admin'
+                'role'          => '0'
             ],
             [
                 'id'            => 2,
                 'name'          => 'Nguyễn Quốc Khánh',
                 'email'         => 'nguyenquockhanh@gmail.com',
                 'password'      => bcrypt('abc123456'),
-                'role'          => 'store'
+                'role'          => '1'
             ],
             [
                 'id'            => 3,
                 'name'          => 'Nguyễn Quốc Đăng Khoa',
                 'email'         => 'nguyenquocdangkhoa@gmail.com',
                 'password'      => bcrypt('abc123456'),
-                'role'          => 'store'
+                'role'          => '1'
             ],
             [
                 'id'            => 4,
                 'name'          => 'Nguyễn Quốc Đăng Khôi',
                 'email'         => 'nguyenquocdangkhoi@gmail.com',
                 'password'      => bcrypt('abc123456'),
-                'role'          => 'staff'
+                'role'          => '2'
             ],
             [
                 'id'            => 5,
                 'name'          => 'Nguyễn Quốc Tuấn',
                 'email'         => 'nguyenquoctuan@gmail.com',
                 'password'      => bcrypt('abc123456'),
-                'role'          => 'staff'
+                'role'          => '2'
             ],
         ]);
     }
