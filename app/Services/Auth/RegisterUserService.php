@@ -15,7 +15,6 @@ class RegisterUserService extends CreateUserService
     {
         try {
             $user = parent::handle();
-
             // $verificationUrl = URL::temporarySignedRoute(
             //     'verify_email',
             //     now()->addMinutes(60),
@@ -24,9 +23,9 @@ class RegisterUserService extends CreateUserService
 
             // Mail::to($user->email)->send(new VerifyMailRegister($user, $verificationUrl));
 
-            return true;
+            return $this->data;
         } catch (Exception $e) {
-            Log::error("register user fail", ['memo' => $e->getMessage()]);
+            Log::error("đăng ký người dùng thất bại", ['memo' => $e->getMessage()]);
 
             return false;
         }

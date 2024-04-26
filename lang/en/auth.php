@@ -16,5 +16,10 @@ return [
     'failed' => 'These credentials do not match our records.',
     'password' => 'The provided password is incorrect.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-
+    'register_fail'             => 'Không thể tạo người dùng !',
+    'register_success'          => 'Đăng ký thành công.',
+    'login_fail'                => 'Không thể đăng nhập !',
+    'login_success'             => 'Đăng nhập thành công.',
+    'logout_fail'                => 'Không thể đăng xuất người dùng !',
+    'logout_success'             => 'Đăng xuất thành công.',
 ];
