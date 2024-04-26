@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Enums\UserRole;
 
 
 class RoleMiddleware
@@ -16,45 +17,39 @@ class RoleMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle($request, Closure $next, $roles)
+    public function handle($request, Closure $next)
     {
-        // Kiểm tra xem người dùng có đăng nhập không
+        // Check if the user is logged in
         if (!$request->user()) {
             return redirect()->route('checklLogin');
         }
 
-        // Nếu người dùng là 'admin', cho phép truy cập
-        if ($request->user()->role === 'admin') {
+        // If user is 'admin', allow access
+        if ($request->user()->role === UserRole::Admin) {
             return $next($request);
         }
 
-        // Nếu người dùng là 'store'
-        if ($request->user()->role === 'store') {
-            // Nếu người dùng đang cố gắng cập nhật thông tin của chính họ, cho phép truy cập
+        // If user is 'store'
+        if ($request->user()->role === UserRole::Store) {
+            // If the user is trying to update their own information, allow access
             if ($request->user()->id == $request->route('id')) {
                 return $next($request);
             }
 
-            // Kiểm tra xem người dùng là 'store' có quyền chỉnh sửa thông tin của staff không
+            // Check if the user 'store' has permission to edit staff information
             $user = User::find($request->route('id'));
-            if ($user->role === 'staff') {
+            if ($user->role === UserRole::Staff) {
                 return $next($request);
             }
+
+            return redirect()->route('checkPermissionFailStore');
+
         }
 
-        // Nếu người dùng là 'admin' hoặc 'store', hoặc không có quyền truy cập
-        if ($request->user()->role !== 'staff' || $request->user()->id != $request->route('id')) {
-            return redirect()->route('checkQuyen');
+        // If the user is 'admin' or 'store', or does not have access rights
+        if ($request->user()->role !== UserRole::Staff || $request->user()->id != $request->route('id')) {
+            return redirect()->route('checkPermissionFailStall');
         }
-
-        // Chuyển đổi chuỗi các vai trò thành mảng
-        $allowedRoles = explode(',', $roles);
-
-        // Kiểm tra vai trò của người dùng
-        if (!in_array($request->user()->role, $allowedRoles)) {
-            return redirect()->route('checkQuyen');
-        }
-
         return $next($request);
     }
 }

@@ -106,8 +106,13 @@ class UserController extends Controller
         return $this->responseErrors(__('users.check_login_fail'));
     }
 
-    public function checkQuyen()
+    public function checkPermissionFailStall()
     {
-        return $this->responseErrors(__('users.check_quyen_fail'));
+        return $this->responseErrors(__('users.check_permission_fail_staff'));
+    }
+
+    public function checkPermissionFailStore()
+    {
+        return $this->responseErrors(__('users.check_permission_fail_store'));
     }
 }

@@ -30,7 +30,10 @@ class RegisterRequest extends BaseRequest
                 'required',
                 'string',
                 'between:6,255'
+            ],
+            'role' => [
             ]
+
         ];
     }
 

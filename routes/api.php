@@ -35,20 +35,21 @@ Route::group(['prefix' => 'users'], function () {
     Route::get('show-user/{id}', [UserController::class, 'showUser']);
     Route::delete('delete/{id}', [UserController::class, 'delete']);
     Route::get('check-login', [UserController::class, 'checkLogin'])->name('checklLogin');
-    Route::get('check-quyen', [UserController::class, 'checkQuyen'])->name('checkQuyen');
+    Route::get('check-permission-fail-stall', [UserController::class, 'checkPermissionFailStall'])->name('checkPermissionFailStall');
+    Route::get('check-permission-fail-store', [UserController::class, 'checkPermissionFailStore'])->name('checkPermissionFailStore');
 
 
-    // Route chỉ dành cho admin
+    // Route is only for admin
     Route::middleware('role:admin')->group(function () {
         Route::put('update/{id}', [UserController::class, 'update']);
     });
 
-    // Route chỉ dành cho store
+    // Route is only for store
     Route::middleware('role:store')->group(function () {
         Route::put('update/{id}', [UserController::class, 'update']);
     });
 
-    // Route chỉ dành cho staff
+    // Route is only for staff
     Route::middleware('role:staff')->group(function () {
         Route::put('update/{id}', [UserController::class, 'update']);
     });

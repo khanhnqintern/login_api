@@ -16,6 +16,8 @@ class AuthControler extends Controller
 
     public function register(RegisterRequest $request)
     {
+
+        //dd($request->validated());
         $result = resolve(RegisterUserService::class)->setParams($request->validated())->handle();
 
         if (!$result) {
@@ -35,8 +37,10 @@ class AuthControler extends Controller
             return $this->responseErrors(__('auth.login_fail'));
         }
 
+        $user = auth()->user();
         return $this->responseSuccess([
             'message' => __('auth.login_success'),
+            'user' => $user,
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60,
