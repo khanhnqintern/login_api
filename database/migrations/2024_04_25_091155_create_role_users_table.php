@@ -14,7 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('role')->default('staff');
+            /** 0 = admin;
+             *  1 = store;
+             *  2 = staff;
+             */
+            $table->integer('role')->default('2');
         });
     }
 
@@ -25,6 +29,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('role_users');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('role');
+        });
     }
 };
