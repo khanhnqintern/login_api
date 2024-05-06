@@ -19,6 +19,11 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            /** 0 = admin;
+             *  1 = store;
+             *  2 = staff;
+             */
+            $table->integer('role')->default('2');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

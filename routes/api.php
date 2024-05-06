@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthControler;
 use App\Http\Controllers\Payment\PaymentController;
+use App\Http\Controllers\ToDoList\ToDoListController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -54,3 +55,15 @@ Route::group(['prefix' => 'users'], function () {
         Route::put('update/{id}', [UserController::class, 'update']);
     });
 });
+
+
+Route::group(['prefix' => 'todolist'], function () {
+    Route::get('/', [ToDoListController::class, 'view']);
+    Route::post('create', [ToDoListController::class, 'store']);
+    Route::get('index', [ToDoListController::class, 'index']);
+    Route::get('show/{id}', [ToDoListController::class, 'showToDoList']);
+    Route::put('update/{id}', [ToDoListController::class, 'update']);
+    Route::delete('delete/{id}', [ToDoListController::class, 'delete']);
+    Route::post('search', [ToDoListController::class, 'search']);
+});
+

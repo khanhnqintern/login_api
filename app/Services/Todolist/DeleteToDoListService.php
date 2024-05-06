@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Services\User;
+namespace App\Services\Todolist;
 
 use App\Interfaces\CrudRepositoryInterface;
 use App\Services\BaseService;
 use Exception;
 use Illuminate\Support\Facades\Log;
 
-class ShowIdUserService extends BaseService
+class DeleteToDoListService extends BaseService
 {
     protected $toDoListRepository;
 
@@ -19,11 +19,11 @@ class ShowIdUserService extends BaseService
     public function handle()
     {
         try {
-            $user = $this->toDoListRepository->find($this->data);
-
-            return $user;
+            return $this->toDoListRepository->delete($this->data->id);
         } catch (Exception $e) {
             Log::info($e);
+
+            return false;
         }
     }
 }

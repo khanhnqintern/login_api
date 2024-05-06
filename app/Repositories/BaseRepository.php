@@ -41,4 +41,5 @@ abstract class BaseRepository implements CrudRepositoryInterface
     {
         return $this->model->findOrFail($id)->delete();
     }
+
 }
