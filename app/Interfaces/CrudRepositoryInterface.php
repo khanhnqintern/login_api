@@ -13,4 +13,6 @@ interface CrudRepositoryInterface
     public function update(array $data, $id);
 
     public function delete($id);
+
+    public function search($value_search);
 }
