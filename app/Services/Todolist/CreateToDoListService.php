@@ -22,6 +22,7 @@ class CreateToDoListService extends BaseService
             return $this->toDoListRepository->create($this->data);
         } catch (Exception $e) {
             Log::info($e);
+
             return false;
         }
     }

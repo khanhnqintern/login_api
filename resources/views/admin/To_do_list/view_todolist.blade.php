@@ -1,5 +1,5 @@
 @extends('admin.view_css_js')
-@section('noi_dung')
+@section('Content')
     <div id="app">
         <div class="card">
             <div class="card-body">
@@ -283,7 +283,7 @@
                             params
                         })
                         .then(response => {
-                            this.list = response.data.toDoList;
+                            this.list = response.data.result;
                         })
                         .catch(error => {
                             console.log(error);
@@ -294,7 +294,7 @@
                     axios
                         .post('/api/todolist/create', this.add)
                         .then((response) => {
-                            if (response.data.toDoList) {
+                            if (response.data.data) {
                                 oasttr.success(res.data.message);
                             } else {
                                 oasttr.error(res.data.message);
@@ -315,7 +315,7 @@
                     this.update.id = id;
                     axios.get(`/api/todolist/show/${id}`).then((res) => {
                         this.updateData = {
-                            ...res.data.toDoList
+                            ...res.data.data
                         }
                     }).catch((err) => {
                         console.log("🚀 ~ axios.get ~ err:", err)
@@ -329,7 +329,7 @@
                     axios
                         .put(`/api/todolist/update/${id}`, this.updateData)
                         .then((res) => {
-                            if (res.data.toDoList) {
+                            if (res.data.data) {
                                 toastr.success(res.data.message, "Thành công!");
                             } else {
                                 toastr.error(res.data.message, "Có lỗi!");
@@ -348,7 +348,7 @@
                     axios
                         .delete(`/api/todolist/delete/${id}`, this.deleleData)
                         .then((res) => {
-                            if (res.data.toDoList) {
+                            if (res.data.data) {
                                 toastr.success(res.data.message);
                             } else {
                                 toastr.error(res.data.message);
@@ -366,7 +366,7 @@
                             valueSearch: this.searchData
                         })
                         .then((res) => {
-                            this.list = res.data.toDoList;
+                            this.list = res.data.data;
                         })
                         .catch((error) => {
                             console.error(error);

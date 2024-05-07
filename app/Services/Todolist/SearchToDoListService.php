@@ -18,10 +18,12 @@ class SearchToDoListService extends BaseService
 
     public function handle()
     {
-        try {
+        try
+        {
             return $this->toDoListRepository->search($this->data);
         } catch (Exception $e) {
             Log::info($e);
+
             return false;
         }
     }

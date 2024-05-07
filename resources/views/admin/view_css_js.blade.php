@@ -7,151 +7,151 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng nhập</title>
+    <title></title>
     <style>
         /* Container */
         .container {
             max-width: 400px;
-            /* Điều chỉnh kích thước tối đa của container */
+            /* Adjust the maximum size of the container */
             margin: 0 auto;
-            /* Canh giữa container */
+            /* Center the container */
         }
 
         /* Breadcrumb */
         .breadcrumb-item a {
             text-decoration: none;
-            /* Loại bỏ gạch chân từ đường link breadcrumb */
+            /* Remove underline from breadcrumb links */
             color: #6c757d;
-            /* Màu chữ cho đường link breadcrumb */
+            /* Text color for breadcrumb links */
         }
 
         .breadcrumb-item a:hover {
             text-decoration: underline;
-            /* Gạch chân đường link breadcrumb khi di chuột qua */
+            /* Underline breadcrumb links on hover */
         }
 
         /* Search input */
         .form-control {
             border: 1px solid #ced4da;
-            /* Viền của ô nhập */
+            /* Border of the input field */
             border-radius: .25rem;
-            /* Bo tròn góc của ô nhập */
+            /* Rounded border radius of the input field */
             transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-            /* Hiệu ứng chuyển đổi khi focus vào ô nhập */
+            /* Transition effect when input field is focused */
             font-size: 0.85rem;
-            /* Kích thước font chữ */
+            /* Font size */
             padding: 0.375rem 0.75rem;
-            /* Khoảng cách giữa nội dung và viền của ô nhập */
+            /* Spacing between content and border of the input field */
         }
 
         .form-control:focus {
             border-color: #007bff;
-            /* Màu viền khi ô nhập được focus */
+            /* Border color when input field is focused */
             outline: 0;
-            /* Loại bỏ đường viền xung quanh khi focus */
+            /* Remove outline when focused */
             box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
-            /* Hiệu ứng bóng khi focus vào ô nhập */
+            /* Box shadow effect when input field is focused */
         }
 
         /* Add To Do List button */
         .btn-primary {
             color: #fff;
-            /* Màu chữ của nút */
+            /* Text color of the button */
             background-color: #007bff;
-            /* Màu nền của nút */
+            /* Background color of the button */
             border-color: #007bff;
-            /* Màu viền của nút */
+            /* Border color of the button */
             border-radius: 1.875rem;
-            /* Bo tròn góc của nút */
+            /* Rounded border radius of the button */
             font-size: 0.85rem;
-            /* Kích thước font chữ */
+            /* Font size */
             padding: 0.375rem 0.75rem;
-            /* Khoảng cách giữa nội dung và viền của nút */
+            /* Spacing between content and border of the button */
         }
 
         .btn-primary:hover {
             background-color: #0056b3;
-            /* Màu nền của nút khi di chuột qua */
+            /* Background color of the button on hover */
             border-color: #0056b3;
-            /* Màu viền của nút khi di chuột qua */
+            /* Border color of the button on hover */
         }
 
         /* Table styles */
         .table {
             width: 100%;
-            /* Chiều rộng của bảng */
+            /* Width of the table */
             margin-bottom: 1rem;
-            /* Khoảng cách dưới của bảng */
+            /* Spacing below the table */
             color: #212529;
-            /* Màu chữ trong bảng */
+            /* Text color within the table */
             vertical-align: top;
-            /* Canh giữa dọc cho nội dung trong ô */
+            /* Vertical alignment for content within cells */
         }
 
         .table th,
         .table td {
             padding: 0.75rem;
-            /* Khoảng cách giữa nội dung và viền của ô */
+            /* Spacing between content and border of cells */
             vertical-align: top;
-            /* Canh giữa dọc cho nội dung trong ô */
+            /* Vertical alignment for content within cells */
             border-top: 1px solid #dee2e6;
-            /* Đường viền trên của ô */
+            /* Top border of cells */
         }
 
         .table thead th {
             vertical-align: bottom;
-            /* Canh giữa dọc cho tiêu đề bảng */
+            /* Vertical alignment for table headers */
             border-bottom: 2px solid #dee2e6;
-            /* Đường viền dưới của tiêu đề bảng */
+            /* Bottom border of table headers */
         }
 
         .table tbody+tbody {
             border-top: 2px solid #dee2e6;
-            /* Đường viền giữa các phần tử tbody */
+            /* Top border between tbody elements */
         }
 
         /* Table header */
         .table-light th {
             background-color: #f8f9fa;
-            /* Màu nền của tiêu đề bảng */
+            /* Background color of table headers */
             border-color: #dee2e6;
-            /* Màu viền của tiêu đề bảng */
+            /* Border color of table headers */
             color: #212529;
-            /* Màu chữ của tiêu đề bảng */
+            /* Text color of table headers */
             vertical-align: bottom;
-            /* Canh giữa dọc cho tiêu đề bảng */
+            /* Vertical alignment for table headers */
         }
 
         /* Actions buttons */
         .actions-btns a {
             text-decoration: none;
-            /* Loại bỏ gạch chân từ đường link */
+            /* Remove underline from links */
             color: #007bff;
-            /* Màu chữ của đường link */
+            /* Text color of links */
             margin-right: 5px;
-            /* Khoảng cách phải của các đường link */
+            /* Right margin of links */
         }
 
         .actions-btns a:hover {
             text-decoration: underline;
-            /* Gạch chân đường link khi di chuột qua */
+            /* Underline links on hover */
         }
 
         .filter-label-left {
             margin-right: 10px;
-            /* Khoảng cách giữa nhãn và select */
+            /* Spacing between label and select */
             display: inline-block;
-            /* Hiển thị nhãn trên cùng một dòng với select */
+            /* Display label on the same line with select */
             width: 150px;
-            /* Độ rộng của nhãn */
+            /* Width of the label */
             text-align: right;
-            /* Căn lề phải của nhãn */
+            /* Right-align the label */
         }
     </style>
 </head>
 
 <body>
-    @yield('noi_dung')
+    @yield('Content')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

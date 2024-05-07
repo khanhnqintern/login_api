@@ -1,5 +1,7 @@
 <?php
 
+use App\Enums\ToDoListStatus;
+use App\Enums\ToDoListTaskPriority;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,10 +21,8 @@ return new class extends Migration
             $table->longText('describe')->nullable();
             $table->date('start_date');
             $table->date('end_date');
-            // Priority level: 1 = high / 2 = medium / 3 = low
-            $table->integer('task_priority')->default(3);
-            // Status: 1 = completed / 2 = pending / 3 = unresolved
-            $table->integer('status')->default(3);
+            $table->integer('task_priority')->default(ToDoListTaskPriority::low);
+            $table->integer('status')->default(ToDoListStatus::unresolved);
             $table->timestamps();
             $table->softDeletes();
 

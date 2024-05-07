@@ -2,6 +2,7 @@
 
 namespace App\Models\ToDoList;
 
+use App\Enums\ToDoListStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,6 +13,7 @@ class ToDoList extends Model
     use HasFactory, SoftDeletes;
 
     protected $table = 'to_do_lists';
+
     protected $fillable = [
         'task_name',
         'describe',
@@ -23,7 +25,7 @@ class ToDoList extends Model
 
     public function overdueTasks()
     {
-        return self::where('status', '!=', 1) // Retrieve unfinished tasks
+        return self::where('status', '!=', ToDoListStatus::completed) // Retrieve unfinished tasks
             ->where('end_date', '<', now()) // Get the work due
             ->get();
     }

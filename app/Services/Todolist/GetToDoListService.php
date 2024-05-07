@@ -18,8 +18,10 @@ class GetToDoListService extends BaseService
 
     public function handle()
     {
-        try {
+        try
+        {
             $toDoList = $this->toDoListRepository->filter($this->data['task_priority'], $this->data['status'])->get();
+
             return $toDoList;
         } catch (Exception $e) {
             Log::info($e);
